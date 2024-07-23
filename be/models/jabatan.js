@@ -31,8 +31,3 @@ module.exports = (sequelize, DataTypes) => {
   });
   return Jabatan;
 };
-// sequelize model:create --name Department --attributes name:string
-// sequelize model:create --name Jabatan --attributes name:string,department_id:integer
-// sequelize model:create --name Karyawan --attributes name:string,jabatan_id:integer,age:integer,gender:string,tanggal_lahir:string,alamat:string
-
-// sequelize db:migrate

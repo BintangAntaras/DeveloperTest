@@ -75,8 +75,6 @@ export const karyawanSlice = createSlice({
 				});
 			})
 			.addCase(createKaryawan.fulfilled, (state, action) => {
-				state.list.push(action.payload);
-				state.isModalVisible = false;
 				Swal.fire({
 					title: "Success",
 					text: "Karyawan created successfully",
@@ -94,11 +92,6 @@ export const karyawanSlice = createSlice({
 				});
 			})
 			.addCase(updateKaryawan.fulfilled, (state, action) => {
-				const index = state.list.findIndex((karyawan) => karyawan.id === action.payload.id);
-				if (index !== -1) {
-					state.list[index] = action.payload;
-				}
-				state.isModalVisible = false;
 				Swal.fire({
 					title: "Success",
 					text: "Karyawan updated successfully",

@@ -54,7 +54,7 @@ export default function Home() {
 	}, [dispatch]);
 
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-between p-24">
+		<main className="flex flex-col items-center justify-between p-24">
 			<h1 className="text-4xl mb-12 uppercase">Data Karyawan</h1>
 			<div className="flex gap-6 self-start mb-6">
 				<button className="px-6 py-2 mb-2 text- rounded-lg bg-blue-600 text-blue-100" onClick={() => openModal("karyawan")}>
@@ -82,7 +82,7 @@ export default function Home() {
 					</tr>
 				</thead>
 				<tbody className="bg-white divide-y divide-gray-200">
-					{karyawanList &&
+					{karyawanList.length > 0 ?
 						karyawanList.map((item, index) => (
 							<tr key={item.id}>
 								<td className="px-6 py-4 whitespace-nowrap text-base text-gray-500">{index + 1}</td>
@@ -106,7 +106,10 @@ export default function Home() {
 									</button>
 								</td>
 							</tr>
-						))}
+						))
+                        :
+                        <tr><td colSpan="9" className="text-center text-base text-gray-500">No Data Found!</td></tr>
+                    }
 				</tbody>
 			</table>
 

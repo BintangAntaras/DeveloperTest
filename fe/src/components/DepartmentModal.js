@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createDepartment, updateDepartment, updateFormData, clearFormData } from "../store/departmentSlice"; // Adjust imports based on your actual setup
+import { createDepartment, updateDepartment, updateFormData, clearFormData } from "../store/departmentSlice";
 
 const DepartmentModal = ({ onClose, type, departmentId }) => {
 	const dispatch = useDispatch();

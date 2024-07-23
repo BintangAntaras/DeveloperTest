@@ -24,6 +24,7 @@ const KaryawanModal = ({ onClose, type, karyawanId }) => {
 			dispatch(fetchKaryawanList());
 		} else {
 			dispatch(updateKaryawan(formData));
+            dispatch(fetchKaryawanList());
 		}
 		onClose();
 	};
@@ -31,7 +32,7 @@ const KaryawanModal = ({ onClose, type, karyawanId }) => {
 	const formatDateToYYYYMMDD = (dateString) => {
 		if (!dateString) return "";
 		const date = new Date(dateString);
-		const year = date.getFullYear();
+		const year = ("0" + date.getFullYear()).slice(-4);
 		const month = ("0" + (date.getMonth() + 1)).slice(-2);
 		const day = ("0" + date.getDate()).slice(-2);
 		return `${year}-${month}-${day}`;
@@ -41,6 +42,7 @@ const KaryawanModal = ({ onClose, type, karyawanId }) => {
 		dispatch(fetchDepartmentList());
 		if (karyawanId) {
 			const karyawan = karyawanList.find((item) => item.id === karyawanId);
+            console.log(karyawan);
 			if (karyawan) {
 				for (const key in karyawan) {
 					if (karyawan.hasOwnProperty(key)) {
