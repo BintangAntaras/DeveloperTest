@@ -1,0 +1,59 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Logs
+logs
+*.log
+
+# Dependency directories
+/be/node_modules
+/fe/node_modules
+
+# Build directories
+**/.next
+**/dist
+**/build
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Optional REPL history
+.node_repl_history
+
+# .env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Next.js
+.next/
+out/
+*.next
+
+# Next.js build output
+.next
+out
+
+# Optional eslint cache
+.eslintcache
+
+# IDEs and editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+.DS_Store
+
+# Others
+coverage/
