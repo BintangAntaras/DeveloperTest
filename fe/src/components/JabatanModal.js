@@ -21,7 +21,6 @@ const JabatanModal = ({ onClose, type, jabatanId }) => {
 			dispatch(createJabatan(formData));
 			dispatch(fetchJabatanList());
 		} else {
-            console.log({ ...formData, jabatanId });
 			dispatch(updateJabatan({ ...formData, jabatanId }));
 		}
 		dispatch(clearFormData());
