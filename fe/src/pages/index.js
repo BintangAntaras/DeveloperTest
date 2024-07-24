@@ -94,11 +94,11 @@ export default function Home() {
                                         <span className="sm:hidden font-semibold">Name:</span>
                                         {item.name}
                                     </td>
-                                    <td className="flex items-center justify-between sm:table-cell px-2 sm:px-6 py-4 text-xs sm:text-base text-gray-500" onClick={() => openModal("jabatan", item.jabatan?.id)}>
+                                    <td className="flex items-center justify-between sm:table-cell px-2 sm:px-6 py-4 text-xs sm:text-base text-gray-500">
                                         <span className="sm:hidden font-semibold">Jabatan:</span>
                                         {item.jabatan?.name}
                                     </td>
-                                    <td className="flex items-center justify-between sm:table-cell px-2 sm:px-6 py-4 text-xs sm:text-base text-gray-500" onClick={() => openModal("department", item.jabatan?.department?.id)}>
+                                    <td className="flex items-center justify-between sm:table-cell px-2 sm:px-6 py-4 text-xs sm:text-base text-gray-500">
                                         <span className="sm:hidden font-semibold">Department:</span>
                                         {item.jabatan?.department?.name}
                                     </td>

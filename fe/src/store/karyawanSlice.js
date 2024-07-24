@@ -2,25 +2,25 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const BASE_URL = "http://localhost:3000/api/karyawan";
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/karyawan`;
 
 export const fetchKaryawanList = createAsyncThunk("karyawan/fetchList", async () => {
-	const response = await axios.get(BASE_URL);
+	const response = await axios.get(API_URL);
 	return response.data;
 });
 
 export const createKaryawan = createAsyncThunk("karyawan/create", async (newKaryawan) => {
-	const response = await axios.post(BASE_URL, newKaryawan);
+	const response = await axios.post(API_URL, newKaryawan);
 	return response.data;
 });
 
 export const updateKaryawan = createAsyncThunk("karyawan/update", async (updatedKaryawan) => {
-	const response = await axios.put(`${BASE_URL}/${updatedKaryawan.id}`, updatedKaryawan);
+	const response = await axios.put(`${API_URL}/${updatedKaryawan.id}`, updatedKaryawan);
 	return response.data;
 });
 
 export const deleteKaryawan = createAsyncThunk("karyawan/delete", async (id) => {
-	await axios.delete(`${BASE_URL}/${id}`);
+	await axios.delete(`${API_URL}/${id}`);
 	return id;
 });
 

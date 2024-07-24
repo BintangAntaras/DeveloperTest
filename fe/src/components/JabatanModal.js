@@ -3,28 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { createJabatan, fetchJabatanList, updateJabatan, clearFormData, updateFormData } from "../store/jabatanSlice";
 import { fetchDepartmentList } from "../store/departmentSlice";
 
-const JabatanModal = ({ onClose, type, id }) => {
+const JabatanModal = ({ onClose, type, jabatanId }) => {
 	const dispatch = useDispatch();
 	const departmentList = useSelector((state) => state.department.list);
 	const jabatanList = useSelector((state) => state.jabatan.list);
-	const jabatan = jabatanList.find((jabatan) => jabatan.id === id);
+	const jabatan = jabatanList.find((jabatan) => jabatan.id === jabatanId);
 	const formData = useSelector((state) => state.jabatan.formData);
-
-	useEffect(() => {
-		dispatch(fetchDepartmentList());
-		if (id) {
-			const jabatan = jabatanList.find((item) => item.id === id);
-			if (jabatan) {
-				for (const key in jabatan) {
-					if (jabatan.hasOwnProperty(key)) {
-						dispatch(updateFormData({ name: key, value }));
-					}
-				}
-			}
-		} else {
-			dispatch(clearFormData());
-		}
-	}, [dispatch, id, jabatan]);
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -37,11 +21,33 @@ const JabatanModal = ({ onClose, type, id }) => {
 			dispatch(createJabatan(formData));
 			dispatch(fetchJabatanList());
 		} else {
-			dispatch(updateJabatan({ ...formData, id }));
+            console.log({ ...formData, jabatanId });
+			dispatch(updateJabatan({ ...formData, jabatanId }));
 		}
 		dispatch(clearFormData());
 		onClose();
 	};
+
+    useEffect(() => {
+        dispatch(fetchJabatanList());
+    }, [dispatch]);
+
+    useEffect(() => {
+		dispatch(fetchDepartmentList());
+		if (jabatanId) {
+			const jabatan = jabatanList.find((item) => item.id === jabatanId);
+			if (jabatan) {
+				for (const key in jabatan) {
+					if (jabatan.hasOwnProperty(key)) {
+						const value = jabatan[key];
+						dispatch(updateFormData({ name: key, value }));
+					}
+				}
+			}
+		} else {
+			dispatch(clearFormData());
+		}
+	}, [dispatch, jabatanId, jabatanList]);
 
 	return (
 		<div className="bg-white p-6 rounded-lg">

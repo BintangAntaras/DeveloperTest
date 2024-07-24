@@ -2,23 +2,25 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import Swal from "sweetalert2";
 
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/department`;
+
 export const fetchDepartmentList = createAsyncThunk("department/fetchDepartmentList", async () => {
-	const response = await axios.get("http://localhost:3000/api/department");
+	const response = await axios.get(`${API_URL}`);
 	return response.data;
 });
 
 export const createDepartment = createAsyncThunk("department/createDepartment", async (newDepartment) => {
-	const response = await axios.post("http://localhost:3000/api/department", newDepartment);
+	const response = await axios.post(`${API_URL}`, newDepartment);
 	return response.data;
 });
 
 export const updateDepartment = createAsyncThunk("department/updateDepartment", async (updatedDepartment) => {
-	const response = await axios.put(`http://localhost:3000/api/department/${updatedDepartment.id}`, updatedDepartment);
+	const response = await axios.put(`${API_URL}/${updatedDepartment.id}`, updatedDepartment);
 	return response.data;
 });
 
 export const deleteDepartment = createAsyncThunk("department/deleteDepartment", async (id) => {
-	await axios.delete(`http://localhost:3000/api/department/${id}`);
+	await axios.delete(`${API_URL}/${id}`);
 	return id;
 });
 

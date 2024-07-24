@@ -2,27 +2,29 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import Swal from "sweetalert2";
 
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/jabatan`;
+
 export const fetchJabatanList = createAsyncThunk("jabatan/fetchJabatanList", async (departmentId) => {
-	const response = await axios.get(`http://localhost:3000/api/jabatan`);
+	const response = await axios.get(`${API_URL}`);
 	return response.data;
 });
 export const fetchJabatanByDepartment = createAsyncThunk("jabatan/fetchJabatanByDepartment", async (departmentId) => {
-	const response = await axios.get(`http://localhost:3000/api/jabatan/department/${departmentId}`);
+	const response = await axios.get(`${API_URL}/department/${departmentId}`);
 	return response.data;
 });
 
 export const createJabatan = createAsyncThunk("jabatan/createJabatan", async (newJabatan) => {
-	const response = await axios.post("http://localhost:3000/api/jabatan", newJabatan);
+	const response = await axios.post(`${API_URL}`, newJabatan);
 	return response.data;
 });
 
 export const updateJabatan = createAsyncThunk("jabatan/updateJabatan", async (updatedJabatan) => {
-	const response = await axios.put(`http://localhost:3000/api/jabatan/${updatedJabatan.id}`, updatedJabatan);
+	const response = await axios.put(`${API_URL}/${updatedJabatan.id}`, updatedJabatan);
 	return response.data;
 });
 
 export const deleteJabatan = createAsyncThunk("jabatan/deleteJabatan", async (id) => {
-	await axios.delete(`http://localhost:3000/api/jabatan/${id}`);
+	await axios.delete(`${API_URL}/${id}`);
 	return id;
 });
 
@@ -45,6 +47,7 @@ const jabatanSlice = createSlice({
 		},
 		clearFormData: (state) => {
 			state.formData = {
+                id: "",
 				name: "",
 				department_id: "",
 			};
