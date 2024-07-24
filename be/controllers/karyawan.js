@@ -65,6 +65,11 @@ module.exports = {
           return karyawan
             .update({
               name: req.body.name || karyawan.name,
+              jabatan_id: req.body.jabatan_id || karyawan.jabatan_id,
+              age: req.body.age || karyawan.age,
+              gender: req.body.gender || karyawan.gender,
+              tanggal_lahir: req.body.tanggal_lahir || karyawan.tanggal_lahir,
+              alamat: req.body.alamat || karyawan.alamat,
             })
             .then(() => res.status(200).send(karyawan))
             .catch((error) => res.status(400).send(error));

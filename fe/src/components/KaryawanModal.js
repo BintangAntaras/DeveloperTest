@@ -17,16 +17,19 @@ const KaryawanModal = ({ onClose, type, karyawanId }) => {
 		dispatch(updateFormData({ name, value }));
 	};
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		if (type === "create") {
-			dispatch(createKaryawan(formData));
-			dispatch(fetchKaryawanList());
-		} else {
-			dispatch(updateKaryawan(formData));
+	const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            if (type === "create") {
+                await dispatch(createKaryawan(formData)).unwrap();
+            } else {
+                await dispatch(updateKaryawan(formData)).unwrap();
+            }
             dispatch(fetchKaryawanList());
-		}
-		onClose();
+            onClose();
+        } catch (error) {
+            console.error("Failed to save karyawan: ", error);
+        }
 	};
 
 	const formatDateToYYYYMMDD = (dateString) => {
