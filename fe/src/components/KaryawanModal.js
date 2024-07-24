@@ -42,7 +42,6 @@ const KaryawanModal = ({ onClose, type, karyawanId }) => {
 		dispatch(fetchDepartmentList());
 		if (karyawanId) {
 			const karyawan = karyawanList.find((item) => item.id === karyawanId);
-            console.log(karyawan);
 			if (karyawan) {
 				for (const key in karyawan) {
 					if (karyawan.hasOwnProperty(key)) {
